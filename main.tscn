@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7lveodqvkt05"]
+
+[ext_resource type="Script" uid="uid://0w7dwk6qo7yk" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bwua2h2gcw8pu" path="res://multiplayer_menu.tscn" id="2_0xm2m"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_0xm2m")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.19
+alignment = 1
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Reset"
+
+[node name="MultiplayerMenu" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("2_0xm2m")]
+layout_mode = 2
