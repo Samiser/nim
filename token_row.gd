@@ -6,8 +6,8 @@ class_name TokenRow
 @export var initial_token_count: int = 3
 @onready var tokens := $Tokens
 
-@export var token_spacing: int = 64  # Space between tokens
-@export var token_width: int = 64    # Width of each token (adjust as needed)
+@export var token_spacing: int = 64
+@export var token_width: int = 64
 
 var token_scene := preload("res://token.tscn")
 
@@ -50,8 +50,8 @@ func _on_token_clicked(token: Token) -> void:
 	_for_each_child_from(token, func(token: Token) -> void: token_count -= 1)
 
 func _attach_token_signals(token: Token):
-	token.mouse_over.connect(_on_token_mouse_entered)
 	token.mouse_off.connect(_on_token_mouse_exited)
+	token.mouse_over.connect(_on_token_mouse_entered)
 	token.clicked.connect(_on_token_clicked)
 
 func _ready() -> void:

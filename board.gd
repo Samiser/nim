@@ -26,6 +26,3 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	_set_up_rows()
-
-	#$"../VBoxContainer2/Button".pressed.connect(_reset_board)
-	#$"../VBoxContainer2/MultiplayerMenu".reset.connect(_reset_board)
