@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Lobby="*res://lobby.gd"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=2
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

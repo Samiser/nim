@@ -5,14 +5,14 @@ extends Control
 @onready var start_button := $VBoxContainer/StartGame
 
 func _on_host_button_down() -> void:
-	Lobby.player_info["name"] = $VBoxContainer/HBoxContainer/Name.text
-	var error = Lobby.create_game()
+	Lobby.player_info.name = $VBoxContainer/HBoxContainer/Name.text
+	var error := Lobby.create_game()
 	if error:
 		printerr("Error: ", error)
 
 func _on_join_button_down() -> void:
-	Lobby.player_info["name"] = $VBoxContainer/HBoxContainer/Name.text
-	var error = Lobby.join_game()
+	Lobby.player_info.name = $VBoxContainer/HBoxContainer/Name.text
+	var error := Lobby.join_game()
 	if error:
 		printerr("Error: ", error)
 
