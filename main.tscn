@@ -28,9 +28,5 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.19
 alignment = 1
 
-[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-text = "Reset"
-
 [node name="MultiplayerMenu" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("2_0xm2m")]
 layout_mode = 2
