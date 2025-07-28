@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dylntjbhvec7a"]
 
-[ext_resource type="Script" uid="uid://bi2erfab7gty2" path="res://token.gd" id="1_0ucay"]
+[ext_resource type="Script" uid="uid://bi2erfab7gty2" path="res://scenes/game/token.gd" id="1_0ucay"]
 [ext_resource type="Texture2D" uid="uid://cy6ax46nf4rtn" path="res://icon.svg" id="1_bd72f"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0ucay"]

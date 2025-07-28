@@ -5,7 +5,7 @@ extends Control
 
 @export var row_count := 4
 
-var token_row_scene := preload("res://token_row.tscn")
+var token_row_scene := preload("res://scenes/game/token_row.tscn")
 
 func _reset_board() -> void:
 	for child in token_row_container.get_children():

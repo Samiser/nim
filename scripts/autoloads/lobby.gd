@@ -54,14 +54,16 @@ func player_loaded() -> void:
 			players_loaded = 0
 
 func _on_player_connected(id: int) -> void:
-	_register_player.rpc_id(id, player_info)
+	_register_player.rpc_id(id, player_info.to_dict())
 
 @rpc("any_peer", "reliable")
-func _register_player(new_player_info: Player) -> void:
+func _register_player(new_player_info: Dictionary) -> void:
 	print(new_player_info)
+	var new_player := Player.new()
+	new_player.from_dict(new_player_info)
 	var new_player_id := multiplayer.get_remote_sender_id()
-	players[new_player_id] = new_player_info
-	player_connected.emit(new_player_id, new_player_info)
+	players[new_player_id] = new_player
+	player_connected.emit(new_player_id, new_player)
 
 func _on_player_disconnected(id: int) -> void:
 	players.erase(id)

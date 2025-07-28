@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b7jd53br68e35"]
 
-[ext_resource type="Script" uid="uid://b2ysdc6p80d3w" path="res://token_row.gd" id="1_xfkc6"]
+[ext_resource type="Script" uid="uid://b2ysdc6p80d3w" path="res://scenes/game/token_row.gd" id="1_xfkc6"]
 
 [node name="TokenRow" type="Control"]
 custom_minimum_size = Vector2(128, 128)

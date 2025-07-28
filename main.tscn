@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7lveodqvkt05"]
+[gd_scene load_steps=2 format=3 uid="uid://b7lveodqvkt05"]
 
-[ext_resource type="Script" uid="uid://0w7dwk6qo7yk" path="res://main.gd" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://bwua2h2gcw8pu" path="res://multiplayer_menu.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bwua2h2gcw8pu" path="res://scenes/ui/multiplayer_menu.tscn" id="2_0xm2m"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -12,7 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_0xm2m")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1

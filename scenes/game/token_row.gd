@@ -18,7 +18,7 @@ var initial_token_count: int:
 @export var token_spacing: int = 64
 @export var token_width: int = 64
 
-var token_scene := preload("res://token.tscn")
+var token_scene := preload("res://scenes/game/token.tscn")
 
 func _setup_tokens() -> void:
 	while tokens.get_child_count() != token_count:
@@ -112,6 +112,7 @@ func _attach_token_signals(token: Token) -> void:
 	token.clicked.connect(_on_token_clicked)
 
 func _ready() -> void:
-	for token in tokens.get_children():
-		_attach_token_signals(token)
+	if not Engine.is_editor_hint():
+		for token in tokens.get_children():
+			_attach_token_signals(token)
 	_setup_tokens()

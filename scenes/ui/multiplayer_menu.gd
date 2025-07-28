@@ -17,7 +17,7 @@ func _on_join_button_down() -> void:
 		printerr("Error: ", error)
 
 func _on_start_button_down() -> void:
-	Lobby.load_game.rpc("game.tscn")
+	Lobby.load_game.rpc("scenes/game/game.tscn")
 
 func _ready() -> void:
 	host_button.pressed.connect(_on_host_button_down)
