@@ -7,6 +7,12 @@ extends Control
 
 var token_row_scene := preload("res://scenes/game/token_row.tscn")
 
+func get_all_rows() -> Array[Node]:
+	return token_row_container.get_children()
+
+func get_row(index: int) -> Node:
+	return token_row_container.get_child(index)
+
 func _reset_board() -> void:
 	for child in token_row_container.get_children():
 		child.queue_free()

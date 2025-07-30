@@ -52,29 +52,25 @@ func _handle_token_click(token: Token) -> void:
 
 @rpc("authority", "call_remote", "reliable")
 func _rpc_apply_token_hover(index: int, highlight: bool) -> void:
-	if index >= 0:
-		_for_each_child_from(tokens.get_child(index), func(t: Token) -> void: t.highlight(highlight))
-	else:
-		_clear_highlight()
+	var token := tokens.get_child(index) if index >= 0 else null
+	_handle_token_hover(token, highlight)
 
 @rpc("authority", "call_remote", "reliable")
 func _rpc_apply_token_click(index: int) -> void:
 	var token := tokens.get_child(index)
-	_for_each_child_from(token, func(_t: Token) -> void: token_count -= 1)
+	_handle_token_click(token)
 	_clear_highlight()
 
 @rpc("any_peer", "call_remote", "reliable")
 func _rpc_request_token_hover(index: int, highlight: bool) -> void:
 	if not Lobby.multiplayer.is_server(): return
-	_handle_token_hover(tokens.get_child(index) if index >= 0 else null, highlight)
 	_rpc_apply_token_hover.rpc(index, highlight)
 
 @rpc("any_peer", "call_remote", "reliable")
 func _rpc_request_token_click(index: int) -> void:
 	if not Lobby.multiplayer.is_server(): return
-	var token := tokens.get_child(index)
-	_handle_token_click(token)
 	_rpc_apply_token_click.rpc(index)
+	GameManager.advance_turn()
 
 func _process(_delta: float) -> void:
 	_setup_tokens()
@@ -86,25 +82,26 @@ func _for_each_child_from(token: Token, f: Callable) -> void:
 	for i: int in range(index, children.size()):
 		f.call(children[i])
 
+func _is_my_turn() -> bool:
+	print(Lobby.multiplayer.get_unique_id(), " ", Lobby.current_turn_peer_id)
+	return Lobby.multiplayer.get_unique_id() == Lobby.current_turn_peer_id
+
 func _on_token_mouse_entered(token: Token) -> void:
-	if Lobby.multiplayer.is_server():
-		_handle_token_hover(token, true)
-	else:
-		var index := tokens.get_children().find(token)
-		_rpc_request_token_hover.rpc_id(1, index, true)
+	if not _is_my_turn():
+		return
+	var index := tokens.get_children().find(token)
+	_rpc_request_token_hover.rpc_id(1, index, true)
 
 func _on_token_mouse_exited(token: Token) -> void:
-	if Lobby.multiplayer.is_server():
-		_handle_token_hover(null, false)
-	else:
-		_rpc_request_token_hover.rpc_id(1, -1, false)
+	if not _is_my_turn():
+		return
+	_rpc_request_token_hover.rpc_id(1, -1, false)
 
 func _on_token_clicked(token: Token) -> void:
-	if Lobby.multiplayer.is_server():
-		_handle_token_click(token)
-	else:
-		var index := tokens.get_children().find(token)
-		_rpc_request_token_click.rpc_id(1, index)
+	if not _is_my_turn():
+		return
+	var index := tokens.get_children().find(token)
+	_rpc_request_token_click.rpc_id(1, index)
 
 func _attach_token_signals(token: Token) -> void:
 	token.mouse_off.connect(_on_token_mouse_exited)

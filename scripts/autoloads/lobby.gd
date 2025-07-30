@@ -12,8 +12,7 @@ var player_info := Player.new()
 var players := {}
 var players_loaded := 0
 
-signal reset
-signal start
+var current_turn_peer_id := -1
 
 func create_game() -> Error:
 	var peer := ENetMultiplayerPeer.new()
@@ -40,6 +39,9 @@ func join_game(address: String = "") -> Error:
 func remove_multiplayer_peer() -> void:
 	multiplayer.multiplayer_peer = null
 	players.clear()
+
+func get_peer_ids() -> Array:
+	return players.keys()
 
 @rpc("call_local", "reliable")
 func load_game(game_scene_path: String) -> void:

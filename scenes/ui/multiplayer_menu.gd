@@ -18,6 +18,7 @@ func _on_join_button_down() -> void:
 
 func _on_start_button_down() -> void:
 	Lobby.load_game.rpc("scenes/game/game.tscn")
+	GameManager.start_game()
 
 func _ready() -> void:
 	host_button.pressed.connect(_on_host_button_down)
